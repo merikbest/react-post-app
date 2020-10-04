@@ -3,7 +3,7 @@ import "./post-list-item.css";
 
 export default class PostListItem extends Component {
 
-    constructor(props) {
+/*    constructor(props) {
         super(props);
         this.state = { // состояние компонента
             important: false,
@@ -12,9 +12,9 @@ export default class PostListItem extends Component {
 
         this.onImportant = this.onImportant.bind(this); // привязываем обработчик
         this.onLike = this.onLike.bind(this);
-    }
+    }*/
 
-    // Когда кликаем на кнопку вызывается метод onImportant()
+/*    // Когда кликаем на кнопку вызывается метод onImportant()
     onImportant() {
         // изменить состояние компонента (из конструктора)
         this.setState(({important}) => ({
@@ -26,11 +26,11 @@ export default class PostListItem extends Component {
         this.setState(({like}) => ({
             like: !like
         }));
-    }
+    }*/
 
     render() { // метод отрисовывает класс на странице
-        const {label, onDelete} = this.props; // {...itemProps} и onDelete из post-list.js
-        const {important, like} = this.state; // вытаскиваем important из state
+        const {label, onDelete, onToggleImportant, onToggleLiked, important, like} = this.props; // {...itemProps} и onDelete из post-list.js
+        // const {important, like} = this.state; // вытаскиваем important из state
 
         let classNames = "app-list-item d-flex justify-content-between";
 
@@ -46,20 +46,20 @@ export default class PostListItem extends Component {
             <div className={classNames}>
             <span
                 className="app-list-item-label"
-                onClick={this.onLike}>
+                onClick={onToggleLiked}>
                 {label}
             </span>
                 <div className="d-flex justify-content-center align-items-center">
                     <button
                         type="button"
                         className="btn-star btn-sm"
-                        onClick={this.onImportant}>
+                        onClick={onToggleImportant}>
                         <i className="fa fa-star"></i>
                     </button>
                     <button
                         type="button"
                         className="btn-trash btn-sm"
-                        // onDelete берем из переданых "пропсов"
+                        // onDelete берем из переданных "пропсов"
                         onClick={onDelete}>
                         <i className="fa fa-trash-o"></i>
                     </button>
